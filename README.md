@@ -2,6 +2,9 @@
 
 # Topics
 * [Overview](#overview)
+* [Configuration](#configuration)
+    * [Technology Stack](#technology-stack)
+    * [ENV Variables](#env-variables)
 * [Endpoints](#endpoints) 
     * [POST /store/images](#post-storeimages)
     * [GET /store/images](#get-storeimages)
@@ -14,6 +17,29 @@
 
 # Overview
 Image Resizer API provides simple service to upload, resize and download images.
+
+# Configuration
+## Technology Stack
+- NodeJS
+- ExpressJS
+- MySQL
+- RabbitMQ
+- Swagger
+
+## ENV Variables
+| Variable	            | Value                     |   Description	        |
+|---	                |---	                    |---	                |
+|PORT   	            | 8080 	                    |   HTTP Server Port	|
+|DEBUG   	            | express:*   	            |   Log level	        |
+|DATABASE_HOST   	    | localhost  	            |   database host	    |
+|DATABASE_PORT   	    | 3306  	                |   database port	    |
+|DATABASE_NAME   	    | store_database  	        |   database name	    |
+|DATABASE_USER   	    | root  	                |   database user	    |
+|DATABASE_PASS   	    | root  	                |   database password	|
+|AMQP_HOST   	        | amqp://localhost:32771   	|   AMQP host	        |
+|AWS_REGION   	        | us-east-1  	            |   AWS region	        |
+|AWS_ACCESS_KEY_ID   	| key  	                    |   AWS Key ID	        |
+|AWS_SECRET_ACCESS_KEY  | secret   	                |   AWS Access Key	    |
 
 # Endpoints
 ## POST /store/images
