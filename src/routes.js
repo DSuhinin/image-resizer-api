@@ -15,11 +15,14 @@ router.get("/health/status", healthHandlers.statusHandler);
 router.post("/store/images", storeHandlers.uploadImageHandler);
 router.get("/store/images", storeHandlers.getImagesHandler);
 router.get("/store/images/:id", storeHandlers.getImageHandler);
-router.get("/store/images/:id/:type/download", storeHandlers.downloadImageHandler);
+router.get(
+  "/store/images/:id/:type/download",
+  storeHandlers.downloadImageHandler
+);
 router.delete("/store/images/:id", storeHandlers.deleteImageHandler);
 
 // swagger swagger routes.
-router.use("/api/docs", swaggerHandlers.docHandler);
+router.use("/api/docs/", swaggerHandlers.docHandler);
 
 // errors routes.
 router.use(errorHandler);

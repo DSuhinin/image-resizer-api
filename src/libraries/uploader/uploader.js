@@ -1,10 +1,10 @@
-const path = require('path');
+const path = require("path");
 const multer = require("multer");
 const md5 = require("md5");
 const errors = require("./errors");
 const storage = require("./storage");
 
-module.exports =  multer({
+module.exports = multer({
   storage: storage({
     destination: (req, file, cb) => {
       cb(null, process.env.AWS_S3_BUCKET);

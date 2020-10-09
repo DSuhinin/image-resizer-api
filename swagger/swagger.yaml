@@ -15,6 +15,10 @@ paths:
       responses:
         200:
           description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetImageListResponse'
 
     post:
       tags:
@@ -24,11 +28,112 @@ paths:
         200:
           description: success
 
-  /store/images/:id:
+  /store/images/{id}:
     get:
       tags:
         - store
-      summary: 'Get image information.'
+      summary: 'Get image data.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: item id withing store.
+          schema:
+            type: integer
       responses:
         200:
           description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetImageResponse'
+    delete:
+      tags:
+        - store
+      summary: 'Delete image data.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: item id withing store.
+          schema:
+            type: integer
+      responses:
+        200:
+          description: success
+
+  /store/images/{id}/{type}/download:
+    get:
+      tags:
+        - store
+      summary: 'Download images.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: item id withing store.
+          schema:
+            type: integer
+        - name: type
+          in: path
+          required: true
+          description: image type, could be `original` or `thumb`.
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+components:
+  schemas:
+    GetImageResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        original:
+          type: string
+        thumb:
+          type: string
+        size:
+          type: integer
+        type:
+          type: string
+        status:
+          type: integer
+          description: status=1 - image ready for processing, status=2 - image in processing, status=3 - processing completed.
+        created_at:
+          type: string
+          format: 'date-time'
+        updated_at:
+          type: string
+          format: 'date-time'
+    GetImageListResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          original:
+            type: string
+          thumb:
+            type: string
+          size:
+            type: integer
+          type:
+            type: string
+          status:
+            type: integer
+            description: status=1 - image ready for processing, status=2 - image in processing, status=3 - processing completed.
+          created_at:
+            type: string
+            format: 'date-time'
+          updated_at:
+            type: string
+            format: 'date-time'

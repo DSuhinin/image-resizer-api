@@ -1,12 +1,12 @@
-const AWS = require('aws-sdk');
+const AWS = require("aws-sdk");
 const debug = require("debug");
-const errors = require('./errors');
-const StoreModel = require('../../dao/models').StoreModel;
+const errors = require("./errors");
+const StoreModel = require("../../dao/models").StoreModel;
 const StatusCodes = require("http-status-codes").StatusCodes;
-const uploader = require('../../libraries/uploader/uploader');
-const amqpClient = require('../../libraries/amqp/client');
+const uploader = require("../../libraries/uploader/uploader");
+const amqpClient = require("../../libraries/amqp/client");
 
-const s3 = new AWS.S3({apiVersion: '2006-03-01'});
+const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 // TODO
 // - how export and organize constant list inside the module.
@@ -28,10 +28,10 @@ const uploadImageHandler = async (req, res, next) => {
 
     await amqpClient.sendToQueue({
       id: item.id,
-      action: "resize"
+      action: "resize",
     });
 
-    return res.status(StatusCodes.OK).send(item);
+    return res.status(StatusCodes.CREATED).send(item);
   } catch (e) {
     next(e);
   }
@@ -44,7 +44,7 @@ const uploadImageHandler = async (req, res, next) => {
  * @param next
  * @returns {*|boolean|void}
  */
-const getImageHandler = async(req, res, next) => {
+const getImageHandler = async (req, res, next) => {
   const item = await StoreModel.findByPk(req.params.id);
   if (!item) {
     return res.status(StatusCodes.NOT_FOUND).send();
@@ -63,7 +63,7 @@ const getImageHandler = async(req, res, next) => {
 const getImagesHandler = async (req, res, next) => {
   try {
     const log = debug("express:handlers:get-images");
-    const items =  await StoreModel.findAll();
+    const items = await StoreModel.findAll();
     return res.status(StatusCodes.OK).send(items);
   } catch (e) {
     next(e);
@@ -85,20 +85,22 @@ const downloadImageHandler = async (req, res, next) => {
       return res.status(StatusCodes.NOT_FOUND).send();
     }
 
-    if(!item[req.params.type]) {
+    if (!item[req.params.type]) {
       return next(errors.unsupportedImageType);
     }
 
-    const s3Object = await s3.getObject({
-      Key: item[req.params.type],
-      Bucket: process.env.AWS_S3_BUCKET
-    }).promise();
+    const s3Object = await s3
+      .getObject({
+        Key: item[req.params.type],
+        Bucket: process.env.AWS_S3_BUCKET,
+      })
+      .promise();
 
     return res.status(StatusCodes.OK).send(s3Object.Body);
   } catch (e) {
     next(e);
   }
-}
+};
 
 /**
  * Handles DELETE /store/images/:id endpoint.
@@ -117,7 +119,7 @@ const deleteImageHandler = async (req, res, next) => {
 
     await amqpClient.sendToQueue({
       id: item.id,
-      action: "delete"
+      action: "delete",
     });
 
     await item.destroy();
@@ -133,5 +135,5 @@ module.exports = {
   getImageHandler,
   getImagesHandler,
   downloadImageHandler,
-  deleteImageHandler
+  deleteImageHandler,
 };

@@ -8,8 +8,7 @@
 # Project-specific variables
 #
 # Service name. Used for binary name, docker-compose service name, etc...
-SERVICE=todo-nodejs-service
-
+SERVICE=image-resizer-api
 
 #
 # General variables
