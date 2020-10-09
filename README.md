@@ -1,16 +1,16 @@
 # Image Resizer API
 
 # Topics
-* [Overview](#markdown-header-overview)
-* [Endpoints](#markdown-header-endpoints) 
-    * [POST /store/images](#markdown-header-post-storeimages)
-    * [GET /store/images](#markdown-header-get-storeimages)
-    * [GET /store/images/:id](#markdown-header-get-imagesid)
-    * [GET /store/images/:id/:type/download](#markdown-header-get-storeimagesiddownload)
-    * [DELETE /store/images/:id](#markdown-header-delete-storeimagesid)
-    * [GET /api/docs](#markdown-header-get-apidocs)
-* [Appendix A. Response codes](#markdown-header-appendix-a-response-codes)
-* [Appendix B. Request headers](#markdown-header-appendix-b-request-headers)
+* [Overview](#overview)
+* [Endpoints](#endpoints) 
+    * [POST /store/images](#post-storeimages)
+    * [GET /store/images](#get-storeimages)
+    * [GET /store/images/:id](#get-imagesid)
+    * [GET /store/images/:id/:type/download](#get-storeimagesiddownload)
+    * [DELETE /store/images/:id](#delete-storeimagesid)
+    * [GET /api/docs](#get-apidocs)
+* [Appendix A. Response codes](#appendix-a-response-codes)
+* [Appendix B. Request headers](#appendix-b-request-headers)
 
 # Overview
 Image Resizer API provides simple service to upload, resize and download images.
