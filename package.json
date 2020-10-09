@@ -1,0 +1,39 @@
+{
+  "name": "image-resizer-nodejs-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start-dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DSuhinin/todo-nodejs-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DSuhinin/todo-nodejs-app/issues"
+  },
+  "homepage": "https://github.com/DSuhinin/todo-nodejs-app#readme",
+  "dependencies": {
+    "amqplib": "^0.6.0",
+    "aws-sdk": "^2.769.0",
+    "cors": "^2.8.5",
+    "debug": "^4.2.0",
+    "express": "^4.17.1",
+    "http-status-codes": "^2.1.4",
+    "md5": "^2.3.0",
+    "multer": "^1.4.2",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5",
+    "swagger-ui-express": "^4.1.4",
+    "validator": "^13.1.17",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

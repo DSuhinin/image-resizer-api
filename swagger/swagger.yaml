@@ -1,0 +1,34 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: Image Resizer Service.
+tags:
+  - name: store
+    description: Data store endpoints.
+
+paths:
+  /store/images:
+    get:
+      tags:
+        - store
+      summary: 'List all existing images.'
+      responses:
+        200:
+          description: success
+
+    post:
+      tags:
+        - store
+      summary: 'Upload image for further resizing.'
+      responses:
+        200:
+          description: success
+
+  /store/images/:id:
+    get:
+      tags:
+        - store
+      summary: 'Get image information.'
+      responses:
+        200:
+          description: success
