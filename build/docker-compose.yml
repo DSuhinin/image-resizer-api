@@ -1,9 +1,37 @@
 version: '3.2'
 services:
-  todo-nodejs-service:
-    image: todo-nodejs-service
+  image-resizer-api:
+    image: image-resizer-api
+    depends_on:
+      - rabbitmq
+      - mysql
     ports:
       - "8080:8080"
     env_file:
-      - todo-nodejs-service.env
-    container_name: todo-nodejs-service
+      - image-resizer-api.env
+    networks:
+      - image-resizer-network
+    container_name: image-resizer-api
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: store_database
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - image-resizer-network
+
+  rabbitmq:
+    image: 'bitnami/rabbitmq:latest'
+    ports:
+      - '5672:5672'
+    networks:
+      - image-resizer-network
+
+networks:
+  image-resizer-network:
