@@ -5,6 +5,7 @@
 * [Configuration](#configuration)
     * [Technology Stack](#technology-stack)
     * [ENV Variables](#env-variables)
+    * [Run Application](#run-application)
 * [Endpoints](#endpoints) 
     * [POST /store/images](#post-storeimages)
     * [GET /store/images](#get-storeimages)
@@ -40,6 +41,17 @@ Image Resizer API provides simple service to upload, resize and download images.
 |AWS_REGION   	        | us-east-1  	            |   AWS region	        |
 |AWS_ACCESS_KEY_ID   	| key  	                    |   AWS Key ID	        |
 |AWS_SECRET_ACCESS_KEY  | secret   	                |   AWS Access Key	    |
+
+## Run Application
+- check out this repository.
+- setup `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in `/build/image-resizer-api.env`.
+- in a project root directory run `make run_application`
+- in few minutes check that service available by calling health endpoints 
+http://localhost:8080/health/status or http://localhost:8080/health/info
+- check out worker https://github.com/DSuhinin/image-resizer-worker repository.
+- setup `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in `/build/image-worked-api.env`.
+- in a project root directory run `make run_application`.
+- now you can start using endpoints according to the docs http://localhost:8080/api/docs
 
 # Endpoints
 ## POST /store/images

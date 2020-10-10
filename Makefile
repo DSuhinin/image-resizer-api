@@ -30,8 +30,8 @@ build_docker_image: ## Build Application Docker Image.
 run_application_dependencies:
 	@echo ">>> Starting application dependencies."
 	@docker-compose $(DOCKER_COMPOSE_OPTIONS) up -d $(SERVICE)
-	@echo ">>> Sleeping 10 seconds until dependencies start."
-	@sleep 10
+	@echo ">>> Sleeping 20 seconds until dependencies start."
+	@sleep 20
 
 run_application: build_docker_image run_application_dependencies ## Run Application.
 	@echo ">>> Starting up service container."
