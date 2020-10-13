@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test-dev": "jest --watch",
     "start": "node index.js",
     "start-dev": "nodemon index.js"
   },
@@ -16,6 +17,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DSuhinin/todo-nodejs-app/issues"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "homepage": "https://github.com/DSuhinin/todo-nodejs-app#readme",
   "dependencies": {
@@ -34,6 +38,8 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "jest": "^26.5.3",
+    "nodemon": "^2.0.4",
+    "supertest": "^5.0.0"
   }
 }

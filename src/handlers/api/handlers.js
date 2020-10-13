@@ -6,7 +6,14 @@ const StatusCodes = require("http-status-codes").StatusCodes;
 const uploader = require("../../libraries/uploader/uploader");
 const amqpClient = require("../../libraries/amqp/client");
 
-const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+// TODO should be initialized in one place, since we have the same code in `uploader/storage.js`
+const s3 = new AWS.S3({
+  endpoint:
+    process.env.NODE_ENV !== "production"
+      ? process.env.AWS_S3_ENDPOINT
+      : undefined,
+  s3ForcePathStyle: process.env.NODE_ENV !== "production",
+});
 
 // TODO
 // - how export and organize constant list inside the module.

@@ -1,7 +1,8 @@
+const log = require("debug")("express:");
 const app = require("./src/app");
 
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`service is start listening on port ${port}`);
+  log(`service is start listening on port ${port}`);
 });

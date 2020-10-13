@@ -3,11 +3,11 @@ const amqp = require("amqplib");
 
 async function sendToQueue(message) {
   const connection = await amqp.connect(process.env.AMQP_HOST);
-  if(!connection) {
+  if (!connection) {
     throw new Error("impossible to create AMQP connection");
   }
   const channel = await connection.createChannel();
-  if(!channel) {
+  if (!channel) {
     throw new Error("impossible to create AMQP channel");
   }
 

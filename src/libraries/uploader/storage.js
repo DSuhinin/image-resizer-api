@@ -2,7 +2,13 @@ const crypto = require("crypto");
 const AWS = require("aws-sdk");
 
 // Create S3 service object
-const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+const s3 = new AWS.S3({
+  endpoint:
+    process.env.NODE_ENV !== "production"
+      ? process.env.AWS_S3_ENDPOINT
+      : undefined,
+  s3ForcePathStyle: process.env.NODE_ENV !== "production",
+});
 
 function getDestination(req, file, cb) {
   cb(null, "/dev/null");

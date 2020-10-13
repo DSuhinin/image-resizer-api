@@ -13,16 +13,6 @@ const sequelize = new Sequelize({
   password: process.env.DATABASE_PASS,
 });
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    log("connection has been established successfully.");
-  } catch (error) {
-    log("unable to connect to the database:", error);
-    process.exit();
-  }
-})();
-
 module.exports = {
   Sequelize: Sequelize,
   sequelize: sequelize,

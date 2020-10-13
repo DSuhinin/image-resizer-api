@@ -1,0 +1,61 @@
+version: "3.2"
+services:
+  image-resizer-api:
+    image: image-resizer-api
+    depends_on:
+      - rabbitmq
+      - mysql
+      - localstack
+    ports:
+      - "8080:8080"
+    env_file:
+      - image-resizer-api.env
+    networks:
+      - image-resizer-network
+    container_name: image-resizer-api
+
+  integration-tests:
+    build:
+      context: ../
+      dockerfile: docker/integration-test/Dockerfile
+    env_file:
+      - image-resizer-api.env
+    networks:
+      - image-resizer-network
+
+  mysql:
+    build:
+      context: mysql
+    restart: always
+    ports:
+      - "3306"
+    environment:
+      MYSQL_DATABASE: store_database
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - image-resizer-network
+
+  rabbitmq:
+    image: "bitnami/rabbitmq:latest"
+    ports:
+      - "5672"
+    networks:
+      - image-resizer-network
+
+  localstack:
+    build:
+      context: localstack
+    ports:
+      - "4566"
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - DEFAULT_REGION=us-east-1
+    volumes:
+      - ./localstack:/docker-entrypoint-initaws.d
+    networks:
+      - image-resizer-network
+
+networks:
+  image-resizer-network:
