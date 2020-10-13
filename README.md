@@ -6,6 +6,7 @@
     * [Technology Stack](#technology-stack)
     * [ENV Variables](#env-variables)
     * [Run Application](#run-application)
+    * [Run Integration Tests](#run-integration-tests)
 * [Endpoints](#endpoints) 
     * [POST /store/images](#post-storeimages)
     * [GET /store/images](#get-storeimages)
@@ -53,6 +54,10 @@ http://localhost:8080/health/status or http://localhost:8080/health/info
 - setup `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in `/build/image-worked-api.env`.
 - in a project root directory run `make run_application`.
 - now you can start using endpoints according to the docs http://localhost:8080/api/docs
+
+## Run Integration Tests
+- check out this repository.
+- in a project root directory run `make run_application_integration_tests`
 
 # Endpoints
 ## POST /store/images

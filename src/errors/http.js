@@ -10,8 +10,7 @@ class HttpError extends Error {
 
   toString = () => {
     return JSON.stringify({
-      http_code: this.httpCode,
-      error_code: this.errorCode,
+      code: this.errorCode,
       message: this.message,
     });
   };
