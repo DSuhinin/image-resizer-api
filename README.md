@@ -26,6 +26,7 @@ Image Resizer API provides simple service to upload, resize and download images.
 - MySQL
 - RabbitMQ
 - Swagger
+- AWS: S3
 
 ## ENV Variables
 | Variable	            | Value                     |   Description	        |
